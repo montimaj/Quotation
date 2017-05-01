@@ -17,7 +17,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  */
 public class Main {
     private ArrayList<Product> mProductList;
-    private FileInputStream mExcelFile;
 
     private static final Main MAIN = new Main();
     private static final float NIL_VALUE = 9999999.99f;
@@ -28,15 +27,14 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            MAIN.mExcelFile = new FileInputStream(args[0]);
             MAIN.initAllProducts(args);
             MAIN.generateOptimalProducts();
-            MAIN.mExcelFile.close();
         } catch (IOException e) { e.printStackTrace(); }
     }
 
     private void initAllProducts(String[] sheets) throws IOException {
-        XSSFWorkbook workbook = new XSSFWorkbook(mExcelFile);
+        FileInputStream excelFile = new FileInputStream(sheets[0]);
+        XSSFWorkbook workbook = new XSSFWorkbook(excelFile);
         for(int i = 1; i < sheets.length; ++i) {
             Sheet sheet = workbook.getSheetAt(Integer.parseInt(sheets[i]));
             for (Row nextRow : sheet) {
@@ -51,8 +49,9 @@ public class Main {
                     if (!mProductList.contains(product)) mProductList.add(product);
                 }
             }
-            workbook.close();
         }
+        workbook.close();
+        excelFile.close();
     }
 
     private Product getProduct(Product product) {

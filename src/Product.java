@@ -3,7 +3,6 @@ import java.util.Comparator;
 /**
  * @author Sayantan Majumdar (monti.majumdar@gmail.com)
  */
-
 public class Product implements Comparable<Product> {
     private String mName;
     private String mVendor;
