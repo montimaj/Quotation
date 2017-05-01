@@ -19,7 +19,6 @@ public class Main {
     private ArrayList<Product> mProductList;
 
     private static final Main MAIN = new Main();
-    private static final float NIL_VALUE = 9999999.99f;
 
     Main() {
         mProductList = new ArrayList<>();
@@ -77,7 +76,7 @@ public class Main {
             } else if (columnIndex == 3) {
                 float price;
                 price = (float) cell.getNumericCellValue();
-                if(price == 0.0f)   price = NIL_VALUE;
+                if(price == 0.0f)   price = Float.MAX_VALUE;
                 product.setPrice(price);
             }
         }
@@ -107,7 +106,7 @@ public class Main {
                     cell.setCellValue(product.getName());
                 } else {
                     float price = product.getPrice();
-                    if(price == NIL_VALUE)  cell.setCellValue("-");
+                    if(price == Float.MAX_VALUE)  cell.setCellValue("-");
                     else {
                         cell.setCellValue(product.getPrice());
                         CellStyle style = workbook.createCellStyle();
