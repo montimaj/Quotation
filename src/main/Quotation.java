@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
 
+import org.apache.poi.openxml4j.exceptions.NotOfficeXmlFileException;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -41,13 +42,13 @@ public class Quotation {
         }
     }
 
-    public void generateQuotation() throws IOException {
+    public void generateQuotation() throws IOException, NotOfficeXmlFileException {
         initAllProducts();
         generateOptimalProducts();
         mMessage += "Quotation generated.\nCheck " + mExcelFile.getParent() + OUTPUT_FILE;
     }
 
-    private void initAllProducts() throws IOException {
+    private void initAllProducts() throws IOException, NotOfficeXmlFileException {
         FileInputStream fis = new FileInputStream(mExcelFile);
         XSSFWorkbook workbook = new XSSFWorkbook(fis);
         for(int sheets: mSheets) {

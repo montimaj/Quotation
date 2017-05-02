@@ -1,6 +1,7 @@
 package ui;
 
 import main.Quotation;
+import org.apache.poi.openxml4j.exceptions.NotOfficeXmlFileException;
 
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -54,7 +55,7 @@ public class JFilePicker extends JPanel implements ActionListener {
                 Quotation quotation = new Quotation(mFilePath.getText(), mSheets.getText());
                 quotation.generateQuotation();
                 JOptionPane.showMessageDialog(this, quotation.getMessage());
-            } catch (IOException e) { JOptionPane.showMessageDialog(this, "Oops! Some error occured."); }
+            } catch (IOException | NotOfficeXmlFileException e) { JOptionPane.showMessageDialog(this, "Oops! Some error occured."); }
         }
     }
 
