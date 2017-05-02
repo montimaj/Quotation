@@ -55,11 +55,15 @@ public class Quotation {
             for (Row nextRow : sheet) {
                 Iterator<Cell> cellIterator = nextRow.cellIterator();
                 Product product = getProduct(cellIterator);
-                if (product != null) {
+                if (product != null && !product.containsNullField()) {
                     product.setVendor(sheet.getSheetName());
                     Product product1 = getProduct(product);
-                    if (product1 != null && product1.getPrice() > product.getPrice()) {
-                        mProductList.remove(product1);
+                    if (product1 != null) {
+                        if(product1.getPrice() > product.getPrice()) {
+                            mProductList.remove(product1);
+                        } else if(product1.getPrice() == product.getPrice()) {
+                            mProductList.add(product);
+                        }
                     }
                     if (!mProductList.contains(product)) mProductList.add(product);
                 }

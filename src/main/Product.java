@@ -49,4 +49,6 @@ public class Product implements Comparable<Product> {
     public String getName() { return  mName; }
     public float getPrice() { return  mPrice; }
     public int getSerialNo() { return mSerialNo; }
+
+    public boolean containsNullField() { return mName == null || mSerialNo == 0 || mPrice == 0.0f; }
 }
