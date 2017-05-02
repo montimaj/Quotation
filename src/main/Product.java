@@ -1,3 +1,5 @@
+package main;
+
 import java.util.Comparator;
 
 /**
@@ -30,14 +32,10 @@ public class Product implements Comparable<Product> {
     }
 
     @Override
-    public int compareTo(Product other) {
-        return SERIAL_NO.compare(this, other);
-    }
+    public int compareTo(Product other) { return SERIAL_NO.compare(this, other); }
 
     @Override
-    public String toString() {
-        return mSerialNo + ", " + mVendor + ", " +  mName + ", " + mPrice;
-    }
+    public String toString() { return mSerialNo + ", " + mVendor + ", " +  mName + ", " + mPrice; }
 
     public void setVendor(String vendor) {
         mVendor = vendor.substring(vendor.indexOf("-") + 1);
